@@ -6,7 +6,7 @@ class App.Board
     @stage = new PIXI.Stage
     
     gravity = new B2.Vec2(0, 0)
-    @physicWorld = new B2.World(gravity, true)
+    @physicWorld = new B2.World gravity, true
 
   addPlayer: (@player) ->
     @player.setStage @stage

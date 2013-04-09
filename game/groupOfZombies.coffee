@@ -20,8 +20,12 @@ class App.groupOfZombies
     for name, zombie of @zombies
       zombie.moveTo x, y
       
-  addGroup: (@size, @positionX, @positionY, radius) ->
-    for i in [0..@size]
-      x = Math.random() * ((radius + @positionX) + (radius - @positionX)) + (radius - @positionX)
-      y = Math.random() * ((radius + @positionY) + (radius - @positionY)) + (radius - @positionY)
-      @addZombie new App.Zombie (x, y, 1, @name+'_zombie_'+i)
+  createGroup: (@size, @positionX, @positionY, radius) ->
+    for i in [0..@size] by 1
+      x = Math.random() * 2 * radius - radius
+      ylim = Math.sqrt radius * radius - x * x
+      y = Math.random() * 2 * ylim - ylim
+      x += @positionX
+      y += @positionY  
+      name = @name + '_zombie_' + i
+      @addZombie new App.Zombie x, y, 1, name
