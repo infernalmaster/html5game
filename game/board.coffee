@@ -9,20 +9,16 @@ class App.Board
     @physicWorld = new B2.World(gravity, true)
 
   addPlayer: (@player) ->
-    @stage.addChild @player.pixiPlayer
+    @player.setStage @stage
     @player.setWorld @physicWorld
-    
-    
     
   removePlayer: (player) ->
     @stage.removeChild player.pixiSprite
     
   addGroupOfZombies: (group) ->
+    group.setStage @stage
+    group.setWorld @physicWorld
     @zombieGroups[group.name] = group
-    for name, zombie of group.zombies
-      @stage.addChild zombie.pixiZombie
-      
-      zombie.setWorld @physicWorld
     
   removeGroupOfZombies: (group) ->
     for name, zombie of @zombieGroups[group.name].zombies

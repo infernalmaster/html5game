@@ -40,7 +40,8 @@ class App.Zombie
     @positionX = @pixiZombie.position.x = @physicBody.GetPosition().x
     @positionY = @pixiZombie.position.y = @physicBody.GetPosition().y
       
-    
+  setStage: (@stage) ->  
+    @stage.addChild @pixiZombie
       
   moveTo: (@positionX, @positionY) ->
     @pixiZombie.position.x = @positionX

@@ -41,7 +41,8 @@ class App.Player
     @positionX = @pixiPlayer.position.x = @physicBody.GetPosition().x
     @positionY = @pixiPlayer.position.y = @physicBody.GetPosition().y
       
-    
+  setStage: (@stage) ->  
+    @stage.addChild @pixiPlayer
       
   moveTo: (@positionX, @positionY) ->
     @pixiPlayer.position.x = @positionX
