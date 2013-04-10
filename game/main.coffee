@@ -9,7 +9,7 @@ $ ->
     #group1.addZombie new App.Zombie Math.random()*600, Math.random()*400, 1, 'test'+i
   #
 
-  group1.createGroup 100, 500, 400, 100
+  group1.createGroup 20, 500, 400, 100
   board.addGroupOfZombies group1
 
   group2 = new App.groupOfZombies 'group2'
