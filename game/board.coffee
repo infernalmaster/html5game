@@ -6,7 +6,7 @@ class App.Board
     @interactive = true
     @stage = new PIXI.Stage 0x000000, @interactive
 
-    gravity = new B2.Vec2(0, 0)
+    gravity = new B2.Vec2 0, 0
     @physicWorld = new B2.World gravity, true
 
     @createBorder @width/2, 0, 0, @width, 10
@@ -23,7 +23,10 @@ class App.Board
     @stage.removeChild player.pixiSprite
 
   addGroupOfZombies: (group) ->
-    group.setParams {stage: @stage, physicWorld: @physicWorld}
+    group.setParams
+      stage: @stage
+      physicWorld: @physicWorld
+
     @zombieGroups[group.name] = group
 
   removeGroupOfZombies: (group) ->

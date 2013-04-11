@@ -8,7 +8,7 @@ class App.Zombie
 
   initPixi: ->
     @sprite = 'img/bunny.png'
-    playerTexture = PIXI.Texture.fromImage(@sprite)
+    playerTexture = PIXI.Texture.fromImage @sprite
     @pixiZombie = new PIXI.Sprite playerTexture
     @pixiZombie.anchor = new PIXI.Point 0.5, 0.5
     #@pixiZombie.position = this.position
@@ -50,10 +50,10 @@ class App.Zombie
     @stage.addChild @pixiZombie
 
   moveTo: (x, y) ->
-    speed = new B2.Vec2(x-@positionX, y-@positionY)
+    speed = new B2.Vec2 x-@positionX, y-@positionY
     speed.Normalize()
-    speed.Multiply(20)
-    @physicBody.SetLinearVelocity(speed)
+    speed.Multiply 20
+    @physicBody.SetLinearVelocity speed
 
 
   rotation: (deg) ->
