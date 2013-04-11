@@ -38,7 +38,7 @@ class App.Board
 
   removeGroupOfZombies: (group) ->
     for name, zombie of @zombieGroups[group.name].zombies
-      @stage.removeChild zombie.pixiZombie
+      @stage.removeChild zombie.pixiEntity
     delete @zombieGroups[group.name]
 
 

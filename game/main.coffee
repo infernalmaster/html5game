@@ -6,7 +6,7 @@ $ ->
 
   game = new App.Game board, player
 
-  #game.debug()
+  game.debug()
   group1 = new App.groupOfZombies 'group1'
 
   #for i in [0..100]

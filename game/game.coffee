@@ -6,7 +6,7 @@ class App.Game
       x: 0
       y: 0
 
-    document.getElementsByTagName('canvas')[0].addEventListener "mousemove", @onMove, false
+    document.getElementById('dynamic').addEventListener "mousemove", @onMove, false
 
     @initEvents()
     @addStats()
@@ -29,7 +29,7 @@ class App.Game
 
   addStats: =>
     @stats = new Stats()
-    @stats.setMode(0) # 0: fps, 1: ms
+    @stats.setMode 0  # 0: fps, 1: ms
     @stats.domElement.style.position = 'absolute'
     @stats.domElement.style.left = '0px'
     @stats.domElement.style.top = '0px'

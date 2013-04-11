@@ -17,6 +17,7 @@
 
     <script type="text/coffeescript" src='game/app.coffee'></script>
     <script type="text/coffeescript" src='game/board.coffee'></script>
+    <script type="text/coffeescript" src='game/gameEntity.coffee'></script>
     <script type="text/coffeescript" src='game/player.coffee'></script>
     <script type="text/coffeescript" src='game/zombie.coffee'></script>
     <script type="text/coffeescript" src='game/groupOfZombies.coffee'></script>
@@ -44,7 +45,10 @@
     	font: inherit;
     	vertical-align: baseline;
     }
-    canvas{display: block;}
+    canvas{
+        display: block;
+        position: absolute;
+    }
 
     </style>
 
