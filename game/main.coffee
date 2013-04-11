@@ -6,6 +6,7 @@ $ ->
 
   game = new App.Game board, player
 
+  #game.debug()
   group1 = new App.groupOfZombies 'group1'
 
   #for i in [0..100]
@@ -13,10 +14,10 @@ $ ->
   #
 
   group1.createGroup
-    size: 100
+    size: 10
     x: 500
     y: 400
-    radius: 100
+    radius: 10
 
   board.addGroupOfZombies group1
 
@@ -24,12 +25,11 @@ $ ->
   group2.createGroup
     size: 20
     x: 100
-    y: 50
-    radius: 100
+    y: 200
+    radius: 30
 
   board.addGroupOfZombies group2
 
   game.animate()
-
 
   player.moveTo 100, 100

@@ -1,8 +1,12 @@
 class App.Board
   constructor: (@width, @height) ->
     @zombieGroups = {}
-    @renderer = new PIXI.autoDetectRenderer @width, @height
-    document.body.appendChild @renderer.view
+
+    @canvas = document.getElementById 'dynamic'
+    #@renderer = new PIXI.autoDetectRenderer @width, @height, @canvas
+    @renderer = new PIXI.CanvasRenderer @width, @height, @canvas
+    #document.body.appendChild @renderer.view
+
     @interactive = true
     @stage = new PIXI.Stage 0x000000, @interactive
 
@@ -26,6 +30,9 @@ class App.Board
     group.setParams
       stage: @stage
       physicWorld: @physicWorld
+
+
+    #@physicWorld.ClearForces()
 
     @zombieGroups[group.name] = group
 

@@ -15,6 +15,18 @@ class App.Game
     @player.initEvents click: (mouseData) ->
       console.log 'click'
 
+  debug: (canvas2dContext) ->
+    @debug = true
+    sCanvas = document.getElementById('static').getContext('2d') or canvas2dContext
+    sCanvas.canvas.width = @board.width
+    sCanvas.canvas.height = @board.height
+    debugDraw = new B2.DebugDraw()
+    debugDraw.SetSprite sCanvas
+    debugDraw.SetFillAlpha 0.5
+    debugDraw.SetLineThickness 1.0
+    debugDraw.SetFlags B2.DebugDraw.e_shapeBit | B2.DebugDraw.e_jointBit
+    @board.physicWorld.SetDebugDraw debugDraw
+
   addStats: =>
     @stats = new Stats()
     @stats.setMode(0) # 0: fps, 1: ms
@@ -67,4 +79,7 @@ class App.Game
 
     @board.render()
 
+    if @debug
+      @board.physicWorld.DrawDebugData()
+      @board.physicWorld.ClearForces()
     @stats.end()
