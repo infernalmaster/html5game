@@ -9,10 +9,10 @@ class App.Board
     gravity = new B2.Vec2(0, 0)
     @physicWorld = new B2.World gravity, true
 
-    @createBorder(@width/2, 0, 0, @width, 10)
-    @createBorder(@width/2, @height, 0, @width, 10)
-    @createBorder(0, @height/2, 0, 10, @height)
-    @createBorder(@width, @height/2, 0, 10, @height)
+    @createBorder @width/2, 0, 0, @width, 10
+    @createBorder @width/2, @height, 0, @width, 10
+    @createBorder 0, @height/2, 0, 10, @height
+    @createBorder @width, @height/2, 0, 10, @height
 
 
   addPlayer: (@player) ->
@@ -54,9 +54,9 @@ class App.Board
 
 
     fixDef = new B2.FixtureDef()
-    fixDef.density = 1.0;
-    fixDef.friction = 0.05;
-    fixDef.restitution = 0.95;
+    fixDef.density = 1.0
+    fixDef.friction = 0.05
+    fixDef.restitution = 0.95
 
     fixDef.shape = new B2.PolygonShape()
     fixDef.shape.SetAsBox w/2, h/2
