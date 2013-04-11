@@ -6,3 +6,4 @@
 {"ts":1365627821308,"patch":[[{"diffs":[[0,"oup "],[-1,"20, 100, 200, 80"],[1,"{size: 100, x: 500, y: 400, radius: 100}"],[0,"\n  b"]],"start1":455,"start2":455,"length1":24,"length2":48}]],"length":577,"saved":false}
 {"ts":1365627900556,"patch":[[{"diffs":[[0,"ayer"],[1," {x:"],[0," 400,"],[1," y:"],[0," 300, "],[-1,"2"],[1,"scale: 2}"],[0,"\n  g"]],"start1":88,"start2":88,"length1":20,"length2":35}]],"length":592,"saved":false}
 {"ts":1365627983857,"patch":[[{"diffs":[[0," {size: "],[-1,"10"],[1,"2"],[0,"0, x: "],[-1,"5"],[1,"1"],[0,"00, y: "],[-1,"40"],[1,"5"],[0,"0, radiu"]],"start1":473,"start2":473,"length1":34,"length2":32}]],"length":590,"saved":false}
+{"ts":1365629733540,"patch":[[{"diffs":[[0," 300"],[-1,", scale: 2"],[0,"}\n  "]],"start1":104,"start2":104,"length1":18,"length2":8}]],"length":580,"saved":false}

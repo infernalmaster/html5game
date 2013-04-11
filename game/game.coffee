@@ -2,19 +2,26 @@ class App.Game
   constructor: (@board, @player) ->
     @board.addPlayer @player
 
-    @mouse = {x: 0, y: 0}
-    document.getElementsByTagName('canvas')[0].addEventListener("mousemove", @onMove, false)
+    @mouse =
+      x: 0
+      y: 0
 
+    document.getElementsByTagName('canvas')[0].addEventListener "mousemove", @onMove, false
+
+    @initEvents()
     @addStats()
 
+  initEvents: ->
+    @player.initEvents click: (mouseData) ->
+      console.log 'click'
 
-  addStats: () =>
+  addStats: =>
     @stats = new Stats()
     @stats.setMode(0) # 0: fps, 1: ms
     @stats.domElement.style.position = 'absolute'
     @stats.domElement.style.left = '0px'
     @stats.domElement.style.top = '0px'
-    document.body.appendChild( @stats.domElement )
+    document.body.appendChild @stats.domElement
 
   onMove: (e) =>
     if e.pageX or e.pageY
@@ -30,9 +37,14 @@ class App.Game
 
     @stats.begin()
 
-    @player.physicBody.ApplyImpulse({ x: (@mouse.x - @player.positionX) * 1000, y: (@mouse.y - @player.positionY) * 1000 }, @player.physicBody.GetWorldCenter())
+    @player.physicBody.ApplyImpulse
+      x: (@mouse.x - @player.positionX) * 1000
+      y: (@mouse.y - @player.positionY) * 1000
+    , @player.physicBody.GetWorldCenter()
 
-    now = new Date().getTime()
+    @board.moveAllGroupsOfZombiesTo @player.positionX, @player.positionY
+
+    now = (new Date()).getTime()
 
     delta = if time_last_run
       ( now - time_last_run ) / 1000

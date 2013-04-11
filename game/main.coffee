@@ -1,6 +1,6 @@
 $ ->
   board = new App.Board window.innerWidth, window.innerHeight
-  player = new App.Player {x: 400, y: 300, scale: 2}
+  player = new App.Player {x: 400, y: 300}
   game = new App.Game board, player
 
   group1 = new App.groupOfZombies 'group1'

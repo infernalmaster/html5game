@@ -1,8 +1,8 @@
 class App.Zombie
   constructor: (@params) ->
-    @positionX = @params.x
-    @positionY = @params.y
-    @scale = @params.scale
+    @positionX = @params.x or 1
+    @positionY = @params.y or 1
+    @scale = @params.scale or 1
     @name = @params.name
     @initPixi()
 
@@ -49,9 +49,12 @@ class App.Zombie
   setStage: (@stage) ->
     @stage.addChild @pixiZombie
 
-  moveTo: (@positionX, @positionY) ->
-    @pixiZombie.position.x = @positionX
-    @pixiZombie.position.y = @positionY
+  moveTo: (x, y) ->
+    speed = new B2.Vec2(x-@positionX, y-@positionY)
+    speed.Normalize()
+    speed.Multiply(20)
+    @physicBody.SetLinearVelocity(speed)
+
 
   rotation: (deg) ->
     @pixiZombie.rotation += deg

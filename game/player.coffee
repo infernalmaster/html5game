@@ -1,8 +1,8 @@
 class App.Player
   constructor: (@params) ->
-    @positionX = @params.x
-    @positionY = @params.y
-    @scale = @params.scale
+    @positionX = @params.x or 1
+    @positionY = @params.y or 1
+    @scale = @params.scale or 2
     @initPixi()
 
   initPixi: ->
@@ -15,6 +15,17 @@ class App.Player
     @pixiPlayer.position.y = @positionY
     @pixiPlayer.scale.x = @scale
     @pixiPlayer.scale.y = @scale
+    @pixiPlayer.setInteractive true
+
+  initEvents:(params) ->
+    @pixiPlayer.click = params.click
+    @pixiPlayer.mouseover = params.mouseover
+    @pixiPlayer.mouseout = params.params
+    @pixiPlayer.mousedown = params.mousedown
+    @pixiPlayer.mouseup = params.mouseup
+    @pixiPlayer.touchstart = params.touchstart
+    @pixiPlayer.touchend = params.touchend
+    @pixiPlayer.tap = params.tap
 
   setWorld: (@physicWorld) ->
     bodyDef = new B2.BodyDef()
@@ -25,7 +36,7 @@ class App.Player
     bodyDef.type = B2.Body.b2_dynamicBody
 
     bodyDef.linearDamping = 0.15
-    bodyDef.angularDamping = 0.0
+    bodyDef.angularDamping = 0.15
 
     bodyDef.userData = @
 
@@ -40,7 +51,7 @@ class App.Player
     @physicBody = @physicWorld.CreateBody bodyDef
     @physicBody.CreateFixture fixDef
 
-  sync: () ->
+  sync: ->
     @pixiPlayer.rotation = @physicBody.GetAngle()
     @positionX = @pixiPlayer.position.x = @physicBody.GetPosition().x
     @positionY = @pixiPlayer.position.y = @physicBody.GetPosition().y

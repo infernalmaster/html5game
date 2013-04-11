@@ -8,7 +8,7 @@
       this.height = height;
       this.zombieGroups = {};
       this.renderer = PIXI.autoDetectRenderer(this.width, this.height)["new"];
-      this.stage = PIXI.Stage["new"];
+      this.stage = new PIXI.Stage;
       window.Board = Board;
     }
 
