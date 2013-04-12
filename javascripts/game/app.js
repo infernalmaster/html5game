@@ -1,0 +1,1 @@
+(function(){window.App={scale:30}}).call(this);
