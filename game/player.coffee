@@ -6,7 +6,7 @@ class App.Player extends App.Entity
     @params.friction = 0.05
     @params.restitution = 0.5
     @params.linearDamping = 0.15
-    @params.angularDamping = 0.15
+    @params.angularDamping = 0.55
     @params.interactive = true
     @params.boxSize =
       x: 26 / 30

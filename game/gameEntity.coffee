@@ -62,11 +62,12 @@ class App.Entity
   setStage: (@stage) ->
     @stage.addChild @pixiEntity
 
-  moveTo: (x, y, spd = 4) ->
+  moveTo: (x, y, maxSpeed = 4) ->
     speed = new B2.Vec2 x-@positionX, y-@positionY
-    speed.Normalize()
-    speed.Multiply spd
-    speed.Multiply 1
+
+    if speed.Length() > maxSpeed
+        speed.Normalize()
+        speed.Multiply maxSpeed
     @physicBody.SetLinearVelocity speed
 
 
