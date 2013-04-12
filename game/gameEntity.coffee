@@ -44,8 +44,8 @@ class App.Entity
     @physicBody.CreateFixture fixDef
 
   initEvents:(params) ->
-    @pixiEntity.click = params.click
     @pixiEntity.mouseover = params.mouseover
+    @pixiEntity.click = params.click
     @pixiEntity.mouseout = params.params
     @pixiEntity.mousedown = params.mousedown
     @pixiEntity.mouseup = params.mouseup

@@ -18,6 +18,31 @@ class App.Board
     @createBorder 0, @height/2, 0, 10, @height
     @createBorder @width, @height/2, 0, 10, @height
 
+  onPlayerHit: (event) ->
+    hit = (contact, oldManifold) =>
+      entity1 = contact.GetFixtureA().GetBody().GetUserData()
+      entity2 = contact.GetFixtureB().GetBody().GetUserData()
+      return true if entity1 is null or entity2 is null
+
+      if entity1.type is "player" and entity2.type is "zombie"
+        event
+          player: entity1
+          zombie: entity2
+      if entity1.type is "zombie" and entity2.type is "player"
+        event
+          zombie: entity1
+          player: entity2
+
+    @events postSolve: hit
+
+  events: (params) ->
+    #Add listeners for contact
+    listener = new B2.Listener
+    listener.BeginContact = params.beginContact or ->
+    listener.EndContact = params.endContact or ->
+    listener.PostSolve = params.postSolve or ->
+    listener.PreSolve = params.preSolve or ->
+    @physicWorld.SetContactListener listener
 
   addPlayer: (@player) ->
     @player.setStage @stage

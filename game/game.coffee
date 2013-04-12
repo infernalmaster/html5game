@@ -7,13 +7,14 @@ class App.Game
       y: 0
 
     document.getElementById('dynamic').addEventListener "mousemove", @onMove, false
-
     @initEvents()
     @addStats()
 
   initEvents: ->
     @player.initEvents click: (mouseData) ->
       console.log 'click'
+    @board.onPlayerHit ->
+      console.log 'ough'
 
   debug: (canvas2dContext) ->
     @debug = true
@@ -78,6 +79,8 @@ class App.Game
       object = object.GetNext()
 
     @board.render()
+
+    #@board.physicWorld.ClearForces()
 
     if @debug
       @board.physicWorld.DrawDebugData()
