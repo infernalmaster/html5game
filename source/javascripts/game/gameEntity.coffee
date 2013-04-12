@@ -38,7 +38,9 @@ class App.Entity
     fixDef.restitution = @params.restitution or 0.5
 
     fixDef.shape = new B2.PolygonShape()
-    fixDef.shape.SetAsBox @params.boxSize.x, @params.boxSize.y
+    shapeWidth = @params.shapeWidth or (@pixiEntity.width/2/App.scale * @scale)
+    shapeHeight = @params.shapeHeight or (@pixiEntity.height/2/App.scale * @scale)
+    fixDef.shape.SetAsBox shapeWidth, shapeHeight
 
     @physicBody = @physicWorld.CreateBody bodyDef
     @physicBody.CreateFixture fixDef
