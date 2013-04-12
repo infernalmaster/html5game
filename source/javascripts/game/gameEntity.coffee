@@ -9,7 +9,7 @@ class App.Entity
     @initPixi()
 
   initPixi: ->
-    @sprite = 'img/bunny.png'
+    @sprite = 'images/bunny.png'
     playerTexture = PIXI.Texture.fromImage @sprite
     @pixiEntity = new PIXI.Sprite playerTexture
     @pixiEntity.setInteractive @params.interactive or false
