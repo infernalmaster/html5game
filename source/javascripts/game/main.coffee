@@ -1,4 +1,5 @@
-$ ->
+preloader = new PIXI.AssetLoader ['/images/bunny.png']
+preloader.onComplete = ->
   board = new App.Board window.innerWidth, window.innerHeight
   player = new App.Player
     x: 400
@@ -33,3 +34,5 @@ $ ->
   game.animate()
 
   player.moveTo 100, 100
+
+preloader.load()

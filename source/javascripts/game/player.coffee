@@ -8,7 +8,4 @@ class App.Player extends App.Entity
     @params.linearDamping = 0.15
     @params.angularDamping = 0.55
     @params.interactive = true
-    @params.boxSize =
-      x: 26 / 30
-      y: 37 / 30
     super @params
