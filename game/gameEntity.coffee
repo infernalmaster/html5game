@@ -5,6 +5,7 @@ class App.Entity
     @scale = @params.scale or 1
     @name = @params.name
     @type = @params.type
+    @worldScale = 30
     @initPixi()
 
   initPixi: ->
@@ -21,8 +22,8 @@ class App.Entity
 
   setWorld: (@physicWorld) ->
     bodyDef = new B2.BodyDef()
-    bodyDef.position.x = @positionX
-    bodyDef.position.y = @positionY
+    bodyDef.position.x = @positionX / @worldScale
+    bodyDef.position.y = @positionY / @worldScale
     bodyDef.angle = 0
 
     bodyDef.type = B2.Body.b2_dynamicBody
@@ -44,8 +45,8 @@ class App.Entity
     @physicBody.CreateFixture fixDef
 
   initEvents:(params) ->
-    @pixiEntity.mouseover = params.mouseover
     @pixiEntity.click = params.click
+    @pixiEntity.mouseover = params.mouseover
     @pixiEntity.mouseout = params.params
     @pixiEntity.mousedown = params.mousedown
     @pixiEntity.mouseup = params.mouseup
@@ -55,16 +56,17 @@ class App.Entity
 
   sync: () ->
     @pixiEntity.rotation = @physicBody.GetAngle()
-    @positionX = @pixiEntity.position.x = @physicBody.GetPosition().x
-    @positionY = @pixiEntity.position.y = @physicBody.GetPosition().y
+    @positionX = @pixiEntity.position.x = @physicBody.GetPosition().x * @worldScale
+    @positionY = @pixiEntity.position.y = @physicBody.GetPosition().y * @worldScale
 
   setStage: (@stage) ->
     @stage.addChild @pixiEntity
 
-  moveTo: (x, y) ->
+  moveTo: (x, y, spd = 4) ->
     speed = new B2.Vec2 x-@positionX, y-@positionY
     speed.Normalize()
-    speed.Multiply 20
+    speed.Multiply spd
+    speed.Multiply 1
     @physicBody.SetLinearVelocity speed
 
 

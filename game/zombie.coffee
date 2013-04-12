@@ -7,6 +7,6 @@ class App.Zombie extends App.Entity
     @params.linearDamping = 0.25
     @params.angularDamping = 0.9
     @params.boxSize =
-      x: 13
-      y: 18
+      x: 13 / 30
+      y: 18 / 30
     super @params

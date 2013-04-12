@@ -78,8 +78,8 @@ class App.Board
   createBorder: (x, y, angle, w, h) ->
 
     bodyDef = new B2.BodyDef()
-    bodyDef.position.x = x
-    bodyDef.position.y = y
+    bodyDef.position.x = x/30
+    bodyDef.position.y = y/30
     bodyDef.angle = angle
 
     bodyDef.type = B2.Body.b2_staticBody
@@ -94,7 +94,7 @@ class App.Board
     fixDef.restitution = 0.95
 
     fixDef.shape = new B2.PolygonShape()
-    fixDef.shape.SetAsBox w/2, h/2
+    fixDef.shape.SetAsBox w/2/30, h/2/30
 
     physicBody = @physicWorld.CreateBody bodyDef
     physicBody.CreateFixture fixDef

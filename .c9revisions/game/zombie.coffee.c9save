@@ -16,3 +16,4 @@
 {"ts":1365701293278,"patch":[[{"diffs":[[0,"@params."],[-1,"."],[0,"density "]],"start1":96,"start2":96,"length1":17,"length2":16}]],"length":306,"saved":false}
 {"ts":1365707279710,"patch":[[{"diffs":[[0,"g = 0.9\n"],[1,"    @params.interactive = true\n"],[0,"    @par"]],"start1":234,"start2":234,"length1":16,"length2":47}]],"length":337,"saved":false}
 {"ts":1365707317656,"patch":[[{"diffs":[[0,"0.9\n"],[-1,"    @params.interactive = true\n"],[0,"    "]],"start1":238,"start2":238,"length1":39,"length2":8}]],"length":306,"saved":false}
+{"contributors":["infernalmaster1@gmail.com"],"silentsave":false,"ts":1365790660409,"patch":[[{"diffs":[[0,"   x: 13"],[1," / 30"],[0,"\n      y"]],"start1":267,"start2":267,"length1":16,"length2":21},{"diffs":[[0,"   y: 18"],[1," / 30"],[0,"\n    sup"]],"start1":284,"start2":284,"length1":16,"length2":21}]],"length":316,"saved":false}

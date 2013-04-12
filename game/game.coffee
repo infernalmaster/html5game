@@ -25,6 +25,7 @@ class App.Game
     debugDraw.SetSprite sCanvas
     debugDraw.SetFillAlpha 0.5
     debugDraw.SetLineThickness 1.0
+    debugDraw.SetDrawScale(30);
     debugDraw.SetFlags B2.DebugDraw.e_shapeBit | B2.DebugDraw.e_jointBit
     @board.physicWorld.SetDebugDraw debugDraw
 
@@ -50,10 +51,12 @@ class App.Game
 
     @stats.begin()
 
-    @player.physicBody.ApplyImpulse
-      x: (@mouse.x - @player.positionX) * 1000
-      y: (@mouse.y - @player.positionY) * 1000
-    , @player.physicBody.GetWorldCenter()
+#    @player.physicBody.ApplyImpulse
+#      x: (@mouse.x - @player.positionX) * 1000
+#      y: (@mouse.y - @player.positionY) * 1000
+#    , @player.physicBody.GetWorldCenter()
+
+    @player.moveTo @mouse.x, @mouse.y, 40
 
     @board.moveAllGroupsOfZombiesTo @player.positionX, @player.positionY
 
