@@ -25,7 +25,7 @@ class App.Game
     debugDraw.SetSprite sCanvas
     debugDraw.SetFillAlpha 0.5
     debugDraw.SetLineThickness 1.0
-    debugDraw.SetDrawScale(30);
+    debugDraw.SetDrawScale(App.scale);
     debugDraw.SetFlags B2.DebugDraw.e_shapeBit | B2.DebugDraw.e_jointBit
     @board.physicWorld.SetDebugDraw debugDraw
 
@@ -44,7 +44,6 @@ class App.Game
     else
       @mouse.x = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft
       @mouse.y = e.clientY + document.body.scrollTop + document.documentElement.scrollTop
-
 
   animate: =>
     requestAnimationFrame @animate
@@ -80,10 +79,8 @@ class App.Game
       entity = object.GetUserData()
       entity.sync() if entity
       object = object.GetNext()
-
+      
     @board.render()
-
-    #@board.physicWorld.ClearForces()
 
     if @debug
       @board.physicWorld.DrawDebugData()

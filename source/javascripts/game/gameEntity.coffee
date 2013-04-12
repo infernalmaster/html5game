@@ -5,11 +5,10 @@ class App.Entity
     @scale = @params.scale or 1
     @name = @params.name
     @type = @params.type
-    @worldScale = 30
     @initPixi()
 
   initPixi: ->
-    @sprite = 'images/bunny.png'
+    @sprite = '/images/bunny.png'
     playerTexture = PIXI.Texture.fromImage @sprite
     @pixiEntity = new PIXI.Sprite playerTexture
     @pixiEntity.setInteractive @params.interactive or false
@@ -22,8 +21,8 @@ class App.Entity
 
   setWorld: (@physicWorld) ->
     bodyDef = new B2.BodyDef()
-    bodyDef.position.x = @positionX / @worldScale
-    bodyDef.position.y = @positionY / @worldScale
+    bodyDef.position.x = @positionX / App.scale
+    bodyDef.position.y = @positionY / App.scale
     bodyDef.angle = 0
 
     bodyDef.type = B2.Body.b2_dynamicBody
@@ -56,8 +55,8 @@ class App.Entity
 
   sync: () ->
     @pixiEntity.rotation = @physicBody.GetAngle()
-    @positionX = @pixiEntity.position.x = @physicBody.GetPosition().x * @worldScale
-    @positionY = @pixiEntity.position.y = @physicBody.GetPosition().y * @worldScale
+    @positionX = @pixiEntity.position.x = @physicBody.GetPosition().x * App.scale
+    @positionY = @pixiEntity.position.y = @physicBody.GetPosition().y * App.scale
 
   setStage: (@stage) ->
     @stage.addChild @pixiEntity
@@ -69,7 +68,6 @@ class App.Entity
         speed.Normalize()
         speed.Multiply maxSpeed
     @physicBody.SetLinearVelocity speed
-
 
   rotation: (deg) ->
     @pixiEntity.rotation += deg

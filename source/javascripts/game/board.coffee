@@ -56,16 +56,12 @@ class App.Board
       stage: @stage
       physicWorld: @physicWorld
 
-
-    #@physicWorld.ClearForces()
-
     @zombieGroups[group.name] = group
 
   removeGroupOfZombies: (group) ->
     for name, zombie of @zombieGroups[group.name].zombies
       @stage.removeChild zombie.pixiEntity
     delete @zombieGroups[group.name]
-
 
   moveAllGroupsOfZombiesTo: (x, y) ->
     for name, group of @zombieGroups
@@ -78,8 +74,8 @@ class App.Board
   createBorder: (x, y, angle, w, h) ->
 
     bodyDef = new B2.BodyDef()
-    bodyDef.position.x = x/30
-    bodyDef.position.y = y/30
+    bodyDef.position.x = x/ App.scale
+    bodyDef.position.y = y/ App.scale
     bodyDef.angle = angle
 
     bodyDef.type = B2.Body.b2_staticBody
@@ -87,15 +83,13 @@ class App.Board
     bodyDef.linearDamping = 0.25
     bodyDef.angularDamping = 0.9
 
-
     fixDef = new B2.FixtureDef()
     fixDef.density = 1.0
     fixDef.friction = 0.05
     fixDef.restitution = 0.95
 
     fixDef.shape = new B2.PolygonShape()
-    fixDef.shape.SetAsBox w/2/30, h/2/30
+    fixDef.shape.SetAsBox w/2/App.scale, h/2/App.scale
 
     physicBody = @physicWorld.CreateBody bodyDef
     physicBody.CreateFixture fixDef
-
