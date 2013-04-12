@@ -1,0 +1,6 @@
+build/*
+build/*/*
+build/*/*/*
+.sass-cache/
+.c9revisions/
+source/javascripts/game/*.js
