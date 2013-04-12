@@ -62,12 +62,17 @@ class App.Entity
     @stage.addChild @pixiEntity
 
   moveTo: (x, y, maxSpeed = 4) ->
-    speed = new B2.Vec2 x-@positionX, y-@positionY
+    #speed = new B2.Vec2 x-@positionX, y-@positionY
+    #
+    #if speed.Length() > maxSpeed
+    #    speed.Normalize()
+    #    speed.Multiply maxSpeed
+    #@physicBody.SetLinearVelocity speed
 
-    if speed.Length() > maxSpeed
-        speed.Normalize()
-        speed.Multiply maxSpeed
-    @physicBody.SetLinearVelocity speed
+    #@physicBody.GetLinearVelocity
+    #@physicBody.ApplyImpulse(B2.Vec2((x - @position.x)/1000, (y - @position.y)/1000), @physicBody.GetWorldCenter())
+    @physicBody.ApplyImpulse({ x: (x - @positionX)/10000*maxSpeed, y: (y - @positionY)/10000*maxSpeed },
+      {x: @physicBody.GetWorldCenter().x + 10*Math.sin(@physicBody.GetAngle()), y: @physicBody.GetWorldCenter().y - 10*Math.cos(@physicBody.GetAngle())})
 
   rotation: (deg) ->
     @pixiEntity.rotation += deg
