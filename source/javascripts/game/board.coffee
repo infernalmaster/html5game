@@ -10,6 +10,7 @@ class App.Board
     gravity = new B2.Vec2 0, 0
     @physicWorld = new B2.World gravity, true
     new App.Border @
+    @addButton()
 
   onPlayerHit: (event) ->
     hit = (contact, oldManifold) =>
@@ -49,6 +50,17 @@ class App.Board
       physicWorld: @physicWorld
 
     @zombieGroups[group.name] = group
+
+  addButton: ->
+    button = new App.Button 
+      shapeWidth: 5 / App.scale
+      shapeHeight: 5 / App.scale
+      positionX: 100
+      positionY: 450
+
+    button.setWorld @physicWorld
+    button.initEvents @
+
 
   removeGroupOfZombies: (group) ->
     for name, zombie of @zombieGroups[group.name].zombies

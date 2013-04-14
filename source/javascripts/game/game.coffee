@@ -13,7 +13,7 @@ class App.Game
   initEvents: ->
     @player.initEvents click: (mouseData) ->
       console.log 'click'
-    @board.onPlayerHit ->
+    # @board.onPlayerHit ->
       # console.log 'ough'
 
   debug: (canvas2dContext) ->

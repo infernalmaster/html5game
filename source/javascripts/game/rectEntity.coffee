@@ -21,7 +21,7 @@ class App.RectEntity extends App.BasicEntity
     @pixiEntity.scale.y = @scale
 
   setWorld: (@physicWorld) ->
-    bodyDef = new B2.BodyDef()
+    bodyDef = new B2.BodyDef
     bodyDef.position.x = @positionX / App.scale
     bodyDef.position.y = @positionY / App.scale
     bodyDef.angle = 0
