@@ -1,5 +1,6 @@
-class App.Entity
+class App.RectEntity extends App.BasicEntity
   constructor: (@params) ->
+    super @params
     @positionX = @params.x or 1
     @positionY = @params.y or 1
     @scale = @params.scale or 1

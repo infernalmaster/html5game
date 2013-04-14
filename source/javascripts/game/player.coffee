@@ -1,4 +1,4 @@
-class App.Player extends App.Entity
+class App.Player extends App.RectEntity
   constructor: (@params) ->
     @params.type = 'player'
     @params.scale = 2

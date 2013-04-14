@@ -1,4 +1,4 @@
-class App.Zombie extends App.Entity
+class App.Zombie extends App.RectEntity
   constructor: (@params) ->
     @params.type = 'zombie'
     @params.density = 1.0

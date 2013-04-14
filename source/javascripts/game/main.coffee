@@ -15,7 +15,7 @@ preloader.onComplete = ->
   #
 
   group1.createGroup
-    size: 100
+    size: 10
     x: 500
     y: 400
     radius: 10
@@ -33,6 +33,6 @@ preloader.onComplete = ->
 
   game.animate()
 
-  player.moveTo 100, 100
+
 
 preloader.load()
