@@ -29,4 +29,4 @@ class App.groupOfZombies
       x += @positionX
       y += @positionY
       name = @name + '_zombie_' + i
-      @addZombie new App.Zombie {x: x, y: y, scale: 1, name: name}
+      @addZombie new App.Zombie {x: x, y: y, scale: 0.5, name: name}

@@ -15,7 +15,7 @@ preloader.onComplete = ->
   #
 
   group1.createGroup
-    size: 10
+    size: 100
     x: 500
     y: 400
     radius: 10

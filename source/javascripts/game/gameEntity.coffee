@@ -71,6 +71,7 @@ class App.Entity
     #    speed.Multiply maxSpeed
     #@physicBody.SetLinearVelocity speed
 
+
     #@physicBody.GetLinearVelocity
     #@physicBody.ApplyImpulse(B2.Vec2((x - @position.x)/1000, (y - @position.y)/1000), @physicBody.GetWorldCenter())
     @physicBody.ApplyImpulse({ x: (x - @positionX)/10000*maxSpeed, y: (y - @positionY)/10000*maxSpeed },
