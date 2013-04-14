@@ -8,4 +8,6 @@ class App.Player extends App.RectEntity
     @params.linearDamping = 0.15
     @params.angularDamping = 0.55
     @params.interactive = true
+    @params.categoryBits = App.groups.player
+    @params.maskBits = App.groups.walls + App.groups.zombie
     super @params

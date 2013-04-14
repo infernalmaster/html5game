@@ -6,4 +6,6 @@ class App.Zombie extends App.RectEntity
     @params.restitution = 0.5
     @params.linearDamping = 0.25
     @params.angularDamping = 0.9
+    @params.categoryBits = App.groups.zombie
+    @params.maskBits = App.groups.walls + App.groups.player
     super @params

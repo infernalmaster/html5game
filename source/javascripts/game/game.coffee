@@ -69,8 +69,8 @@ class App.Game
 
     @board.physicWorld.Step(
         delta * 2, # double the speed of the simulation
-        10,        # velocity iterations
-        10         # position iterations
+        6,        # velocity iterations
+        2         # position iterations
     )
 
     object = @board.physicWorld.GetBodyList()

@@ -37,6 +37,8 @@ class App.RectEntity extends App.BasicEntity
     fixDef.density = @params.density or 1.0
     fixDef.friction = @params.friction or 0.05
     fixDef.restitution = @params.restitution or 0.5
+    fixDef.filter.categoryBits = @params.categoryBits or 1
+    fixDef.filter.maskBits = @params.maskBits or 1
 
     fixDef.shape = new B2.PolygonShape()
     shapeWidth = @params.shapeWidth or (@pixiEntity.width/2/App.scale * @scale)
