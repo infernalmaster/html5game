@@ -67,18 +67,59 @@ class App.RectEntity extends App.BasicEntity
     @stage.addChild @pixiEntity
 
   moveTo: (x, y, maxSpeed = 4) ->
-    #speed = new B2.Vec2 x-@positionX, y-@positionY
-    #
-    #if speed.Length() > maxSpeed
-    #    speed.Normalize()
-    #    speed.Multiply maxSpeed
-    #@physicBody.SetLinearVelocity speed
+    pos = @physicBody.GetWorldCenter()
+    vel = @physicBody.GetLinearVelocity()
 
 
-    #@physicBody.GetLinearVelocity
-    #@physicBody.ApplyImpulse(B2.Vec2((x - @position.x)/1000, (y - @position.y)/1000), @physicBody.GetWorldCenter())
-    @physicBody.ApplyImpulse({ x: (x - @positionX)/10000*maxSpeed, y: (y - @positionY)/10000*maxSpeed },
-      {x: @physicBody.GetWorldCenter().x + 10*Math.sin(@physicBody.GetAngle()), y: @physicBody.GetWorldCenter().y - 10*Math.cos(@physicBody.GetAngle())})
+    desiredPos = new B2.Vec2(x, y)
+    desiredPos.Multiply 1/App.scale
+
+    desiredVel = desiredPos.Copy()
+    desiredVel.Subtract(pos)
+
+    neededVel = desiredVel.Copy()
+    neededVel.Subtract(vel)
+
+    neededVel.Normalize()
+    neededVel.Multiply maxSpeed/App.scale
+    neededVel.Multiply @physicBody.GetMass()
+
+    @physicBody.ApplyImpulse neededVel, pos
+
+
+
+    angle = @physicBody.GetAngle()
+    angleVec = new B2.Vec2(Math.sin(angle), -Math.cos(angle))
+
+    val = (desiredVel.x)*(angleVec.y) - (desiredVel.y)*(angleVec.x)
+    #log val
+
+    #@physicBody.ApplyTorque -val * 5
+
+    @physicBody.m_torque = 0
+    @physicBody.SetAngularVelocity(0)
+    if desiredVel.y >0
+      @physicBody.SetAngle(Math.PI + Math.atan(-desiredVel.x/desiredVel.y))
+    else
+      @physicBody.SetAngle(Math.atan(-desiredVel.x/desiredVel.y))
+
+    #if val > 0.5
+    #  @physicBody.m_torque = -val * 5
+    #else if val < -0.5
+    #  @physicBody.m_torque = val * 5
+    #else
+    #  @physicBody.m_torque = 0
+    #  @physicBody.SetAngularVelocity(0)
+
+    #@physicBody.GetAngularVelocity
+
+    #log teta * 180/Math.PI
+    #cosQ = (a.x b.x + a.y b.y) / |a| |b|
+    #@physicBody.ApplyTorque 20
+
+
+    #@physicBody.ApplyImpulse({ x: (x - @positionX)/10000*maxSpeed, y: (y - @positionY)/10000*maxSpeed },
+    #  {x: @physicBody.GetWorldCenter().x + 10*Math.sin(@physicBody.GetAngle()), y: @physicBody.GetWorldCenter().y - 10*Math.cos(@physicBody.GetAngle())})
 
   rotation: (deg) ->
     @pixiEntity.rotation += deg

@@ -52,7 +52,7 @@ class App.Board
     @zombieGroups[group.name] = group
 
   addButton: ->
-    button = new App.Button 
+    button = new App.Button
       shapeWidth: 5 / App.scale
       shapeHeight: 5 / App.scale
       positionX: 100
