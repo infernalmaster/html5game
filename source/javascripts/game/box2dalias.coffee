@@ -10,3 +10,5 @@ window.B2 =
     CircleShape: Box2D.Collision.Shapes.b2CircleShape
     DebugDraw: Box2D.Dynamics.b2DebugDraw
     Listener: Box2D.Dynamics.b2ContactListener
+    AABB: Box2D.Collision.b2AABB
+

@@ -1,12 +1,12 @@
-class App.RectEntity extends App.BasicEntity
+class App.Entity
   constructor: (@params) ->
-    super @params
     @positionX = @params.x or 1
     @positionY = @params.y or 1
     @scale = @params.scale or 1
     @name = @params.name
     @type = @params.type
-    @shouldBeDeleted = false
+
+
     @initPixi()
 
   initPixi: ->
@@ -22,7 +22,7 @@ class App.RectEntity extends App.BasicEntity
     @pixiEntity.scale.y = @scale
 
   setWorld: (@physicWorld) ->
-    bodyDef = new B2.BodyDef
+    bodyDef = new B2.BodyDef()
     bodyDef.position.x = @positionX / App.scale
     bodyDef.position.y = @positionY / App.scale
     bodyDef.angle = 0
@@ -38,8 +38,6 @@ class App.RectEntity extends App.BasicEntity
     fixDef.density = @params.density or 1.0
     fixDef.friction = @params.friction or 0.05
     fixDef.restitution = @params.restitution or 0.5
-    fixDef.filter.categoryBits = @params.categoryBits or 1
-    fixDef.filter.maskBits = @params.maskBits or 1
 
     fixDef.shape = new B2.PolygonShape()
     shapeWidth = @params.shapeWidth or (@pixiEntity.width/2/App.scale * @scale)
@@ -59,75 +57,28 @@ class App.RectEntity extends App.BasicEntity
     @pixiEntity.touchend = params.touchend
     @pixiEntity.tap = params.tap
 
-  setStage: (@stage) ->
-    @stage.addChild @pixiEntity
-
-  sync: ->
-    if @shouldBeDeleted is true
-      @remove()
-      return true
+  sync: () ->
     @pixiEntity.rotation = @physicBody.GetAngle()
     @positionX = @pixiEntity.position.x = @physicBody.GetPosition().x * App.scale
     @positionY = @pixiEntity.position.y = @physicBody.GetPosition().y * App.scale
 
-  remove: ->
-    # @stage.removeChild @pixiEntity
-    @physicWorld.DestroyBody @physicBody
+
+  setStage: (@stage) ->
+    @stage.addChild @pixiEntity
 
   moveTo: (x, y, maxSpeed = 4) ->
-    pos = @physicBody.GetWorldCenter()
-    vel = @physicBody.GetLinearVelocity()
+    #speed = new B2.Vec2 x-@positionX, y-@positionY
+    #
+    #if speed.Length() > maxSpeed
+    #    speed.Normalize()
+    #    speed.Multiply maxSpeed
+    #@physicBody.SetLinearVelocity speed
 
 
-    desiredPos = new B2.Vec2(x, y)
-    desiredPos.Multiply 1/App.scale
-
-    desiredVel = desiredPos.Copy()
-    desiredVel.Subtract(pos)
-
-    neededVel = desiredVel.Copy()
-    neededVel.Subtract(vel)
-
-    neededVel.Normalize()
-    neededVel.Multiply maxSpeed/App.scale
-    neededVel.Multiply @physicBody.GetMass()
-
-    @physicBody.ApplyImpulse neededVel, pos
-
-
-
-    angle = @physicBody.GetAngle()
-    angleVec = new B2.Vec2(Math.sin(angle), -Math.cos(angle))
-
-    val = (desiredVel.x)*(angleVec.y) - (desiredVel.y)*(angleVec.x)
-    #log val
-
-    #@physicBody.ApplyTorque -val * 5
-
-    @physicBody.m_torque = 0
-    @physicBody.SetAngularVelocity(0)
-    if desiredVel.y >0
-      @physicBody.SetAngle(Math.PI + Math.atan(-desiredVel.x/desiredVel.y))
-    else
-      @physicBody.SetAngle(Math.atan(-desiredVel.x/desiredVel.y))
-
-    #if val > 0.5
-    #  @physicBody.m_torque = -val * 5
-    #else if val < -0.5
-    #  @physicBody.m_torque = val * 5
-    #else
-    #  @physicBody.m_torque = 0
-    #  @physicBody.SetAngularVelocity(0)
-
-    #@physicBody.GetAngularVelocity
-
-    #log teta * 180/Math.PI
-    #cosQ = (a.x b.x + a.y b.y) / |a| |b|
-    #@physicBody.ApplyTorque 20
-
-
-    #@physicBody.ApplyImpulse({ x: (x - @positionX)/10000*maxSpeed, y: (y - @positionY)/10000*maxSpeed },
-    #  {x: @physicBody.GetWorldCenter().x + 10*Math.sin(@physicBody.GetAngle()), y: @physicBody.GetWorldCenter().y - 10*Math.cos(@physicBody.GetAngle())})
+    #@physicBody.GetLinearVelocity
+    #@physicBody.ApplyImpulse(B2.Vec2((x - @position.x)/1000, (y - @position.y)/1000), @physicBody.GetWorldCenter())
+    @physicBody.ApplyImpulse({ x: (x - @positionX)/10000*maxSpeed, y: (y - @positionY)/10000*maxSpeed },
+      {x: @physicBody.GetWorldCenter().x + 10*Math.sin(@physicBody.GetAngle()), y: @physicBody.GetWorldCenter().y - 10*Math.cos(@physicBody.GetAngle())})
 
   rotation: (deg) ->
     @pixiEntity.rotation += deg

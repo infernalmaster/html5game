@@ -7,5 +7,5 @@ class App.Zombie extends App.RectEntity
     @params.linearDamping = 0.25
     @params.angularDamping = 0.9
     @params.categoryBits = App.groups.zombie
-    @params.maskBits = App.groups.walls + App.groups.player
+    @params.maskBits = App.groups.walls + App.groups.player + App.groups.zombie
     super @params

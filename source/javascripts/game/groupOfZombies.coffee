@@ -10,7 +10,7 @@ class App.groupOfZombies
 
   setParams: (@params) ->
     for name, zombie of @zombies
-      @params.stage.addChild zombie.pixiEntity
+      zombie.setStage @params.stage
       zombie.setWorld @params.physicWorld
 
   moveTo: (x, y) ->

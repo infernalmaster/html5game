@@ -61,7 +61,6 @@ class App.Board
     button.setWorld @physicWorld
     button.initEvents @
 
-
   removeGroupOfZombies: (group) ->
     for name, zombie of @zombieGroups[group.name].zombies
       @stage.removeChild zombie.pixiEntity
